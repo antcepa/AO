@@ -2,23 +2,22 @@ clear;
 clc;
 
 %codeDefinition
-code = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'R' 'S' 'T' 'U' 'W' 'Y' 'X'];
+global codeLen;
+codeLen = 26;
+% code = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z' ',' '.'];
+code = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z' ',' '.'];
 
 %W macierzy o takich wymiarach zostanie zapisany ka¿dy region
-regionHeight = 7;
-regionWidth = 7;
+regionHeight = 14;
+regionWidth = 14;
 %Nazwa pliku który bêdzie dekodowany
-toDecrypt = 'czwor.bmp';
+toDecrypt = 'singleLine.png';
 
 %Reading code pattern
-%codeRegions = getRegions('code.bmp');
-%readCode = regionsToArray(codeRegions, regionHeight, regionWidth);
-readCode = getNormalizedLetters('code.bmp', 7, 7);
+readCode = getNormalizedLetters('alphabet_without_I.png', regionHeight, regionWidth);
 
 %Reading code to decrypt
-%regionsToDecrypt = getRegions(toDecrypt);
-%toDecryptMatrix = regiosToArray(regionsToDecrypt, regionHeight, regionWidth);
-toDecryptMatrix = getNormalizedLetters(toDecrypt, 7, 7);
+toDecryptMatrix = getNormalizedLetters(toDecrypt, regionHeight, regionWidth);
 
 string = [];
 [x y] = size(toDecryptMatrix);
@@ -30,11 +29,10 @@ for i = 1:y
     odl = squareform(dist);
 
 
-    last = odl(1:22, 23);
+    last = odl(1:codeLen, codeLen + 1);
     [value index] = min(last);
     string = [string code(index)];
-    %index = decryptLetter2(readCode, toDecryptMatrix(:, i))
-    withLetter = withLetter(:,22);
+    withLetter = withLetter(:,codeLen);
 end
 string
 %message = decryptString(readCode, toDecryptMatrix, code)

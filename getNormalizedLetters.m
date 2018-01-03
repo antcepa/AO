@@ -9,6 +9,7 @@ function [ letters ] = getNormalizedLetters( fileName, rows, columns )
     letters = ones(rows * columns, x);
     for i = 1: x
         b = regions(i).Image;
+        imshow(b);
         resized = imresize(b, [rows columns]);
         resized = resized(:);
         letters(:,i) = resized;

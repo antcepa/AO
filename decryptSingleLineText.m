@@ -17,7 +17,6 @@ function [ string ] = decryptSingleLineText( readCode, lineImage )
         last = odl(1:codeLen, codeLen + 1);
         [value index] = min(last);
         letters = [letters code(index)];
-        %cut last letter (decoded)
         withLetter = withLetter(:,codeLen);
     end
     

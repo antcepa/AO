@@ -1,8 +1,8 @@
+%% used to extract normalized letters from single line image
+%% image should be cutted up an down
 function [ letters ] = getNormalizedLettersFromLine( SL_Image )
     global regionHeight;
     global regionWidth;
- 
-    %     imshow(SL_Image);
 
     begEndIsIndexes = getLettersBegEndIsIndexes(SL_Image);
     [y x] = size(begEndIsIndexes);

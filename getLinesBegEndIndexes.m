@@ -1,3 +1,4 @@
+%% Returns info where line starts and ends. Each row is for one line
 function [ lines ] = getLinesBegEndIndexes(textImage)   
     lines = [];
     [y, x] = size(textImage);

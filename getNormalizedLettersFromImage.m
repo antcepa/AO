@@ -1,3 +1,4 @@
+%% From BW image creates matrix with normalized letters from image (one letter in each column)
 function [ letters ] = getNormalizedLettersFromImage( textImage )
     begEndLinesYIndexes = getLinesBegEndIndexes(textImage);
     y = size(begEndLinesYIndexes, 1);

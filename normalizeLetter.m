@@ -1,4 +1,5 @@
-% creates the letter with 1px black frame around it
+% creates the letter with 1 px black frame around it and size specified
+% globally by regionHeight and regionWidth
 function [ normalized ] = normalizeLetter( letterImage )
     global regionHeight;
     global regionWidth;

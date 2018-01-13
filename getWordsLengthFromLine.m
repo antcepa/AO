@@ -19,8 +19,6 @@ function [ wordsLength ] = getWordsLengthFromLine( SL_Image )
             spaces = [spaces  begEndIsIndexes(i, 4)];
         end
     end
-    max(spaces)
-    min(spaces)
     isSpace = [];
     for space = spaces
         diffFromMin = abs(space - min(spaces));

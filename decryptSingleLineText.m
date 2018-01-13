@@ -1,24 +1,30 @@
 function [ string ] = decryptSingleLineText( readCode, lineImage )
-    global regionHeight;
-    global regionWidth;
     global codeLen;
     global code;
 
-%     toDecryptMatrix = getNormalizedLetters(lineImage, regionHeight, regionWidth);
-    toDecryptMatrix = getNormalizedLettersFromLine(lineImage);
+    toDecryptLetters = getNormalizedLettersFromLine(lineImage);
+    wordsLength = getWordsLengthFromLine(lineImage);
     
-    string = [];
-    y = size(toDecryptMatrix, 2);
+    letters = [];
+    y = size(toDecryptLetters, 2);
 
     for i = 1:y
-        withLetter = [readCode toDecryptMatrix(:,i)];
+        withLetter = [readCode toDecryptLetters(:,i)];
         convergenceArray = corrcoef(withLetter);
         dist = pdist(convergenceArray, 'euclidean');
         odl = squareform(dist);
 
         last = odl(1:codeLen, codeLen + 1);
         [value index] = min(last);
-        string = [string code(index)];
+        letters = [letters code(index)];
+        %cut last letter (decoded)
         withLetter = withLetter(:,codeLen);
+    end
+    
+    string = [];
+    begIndex = 1;
+    for wordLen = wordsLength
+        string = [string letters(1, begIndex:begIndex + wordLen - 1) ' '];
+        begIndex = begIndex + wordLen;
     end
 end

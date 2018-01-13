@@ -5,10 +5,7 @@ function [ text ] = decryptText( codeNormalized, textImage)
     for i = 1: y
         lineStartYIndex = begEndLinesYIndexes(i, 1);
         lineEndYIndex = begEndLinesYIndexes(i, 2);
-        [sth, textImageXSize] = size(textImage);
-        lineFrame = zeros(lineEndYIndex - lineStartYIndex + 3, textImageXSize);
-        lineFrame(2:end - 1, :) = textImage(lineStartYIndex:lineEndYIndex, :);  
-        line = decryptSingleLineText(codeNormalized, lineFrame);
+        line = decryptSingleLineText(codeNormalized, textImage(lineStartYIndex:lineEndYIndex, :));
         text = strcat(text, '->' , line);
     end
     text

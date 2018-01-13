@@ -25,7 +25,8 @@ codeImage = readImage('alphabet.png');
 codeNormalized = getNormalizedLettersFromImage(codeImage);
 
 textImage = readImage(toDecrypt);
-% getNormalizedLettersFromImage(codeImage);
+lettersToRead = getNormalizedLettersFromImage(codeImage);
+
 text = decryptText(codeNormalized, textImage);
 
 

@@ -11,7 +11,8 @@ function [ string ] = decryptSingleLineText( readCode, lineImage )
     for i = 1:y
         withLetter = [readCode toDecryptLetters(:,i)];
         convergenceArray = corrcoef(withLetter);
-        dist = pdist(convergenceArray, 'euclidean');
+        %Avaiable: cosine, euclidean
+        dist = pdist(convergenceArray, 'cosine');
         odl = squareform(dist);
 
         last = odl(1:codeLen, codeLen + 1);
